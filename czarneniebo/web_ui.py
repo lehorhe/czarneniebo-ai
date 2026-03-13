@@ -144,8 +144,6 @@ def interfejs_forensics(plik_media):
 
 with gr.Blocks(
     title=f"{PROJECT_NAME} v{VERSION}",
-    theme=gr.themes.Soft(),
-    css=".gradio-container { max-width: 1200px; margin: auto; }",
 ) as app:
 
     gr.Markdown(f"""
@@ -214,7 +212,13 @@ with gr.Blocks(
 
 
 def main():
-    app.launch(server_name=UI_HOST, server_port=UI_PORT, share=False)
+    app.launch(
+        server_name=UI_HOST,
+        server_port=UI_PORT,
+        share=False,
+        theme=gr.themes.Soft(),
+        css=".gradio-container { max-width: 1200px; margin: auto; }",
+    )
 
 
 if __name__ == "__main__":
