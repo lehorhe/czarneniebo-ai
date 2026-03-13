@@ -70,9 +70,9 @@ contracts = [
 
 [project.urls]
 Homepage = "https://patronite.pl/CzarneNiebo"
-Repository = "https://github.com/czarneniebo/czarneniebo-ai"
-Documentation = "https://czarneniebo.github.io/czarneniebo-ai"
-"Bug Tracker" = "https://github.com/czarneniebo/czarneniebo-ai/issues"
+Repository = "https://github.com/lehorhe/czarneniebo-ai"
+Documentation = "https://lehorhe.github.io/czarneniebo-ai"
+"Bug Tracker" = "https://github.com/lehorhe/czarneniebo-ai/issues"
 
 [project.scripts]
 czarneniebo = "czarneniebo.web_ui:main"

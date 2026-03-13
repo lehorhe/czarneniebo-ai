@@ -4,7 +4,7 @@
 
 ### Core — Apache 2.0 (bezpłatnie)
 
-Publiczne repozytorium: `github.com/czarneniebo/czarneniebo-ai`
+Publiczne repozytorium: `github.com/lehorhe/czarneniebo-ai`
 
 Obejmuje:
 - `pipeline.py` — archiwum RAG
