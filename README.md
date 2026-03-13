@@ -1,51 +1,80 @@
-# Archiwum Dziennikarskie AI
+# Czarne Niebo AI — Archiwum Dziennikarskie
 
-**GTX 1660 SUPER 6.4GB · i5-12400F · 16GB RAM · Windows 11**
+**Narzędzie dla dziennikarzy śledczych i fact-checkerów**
+**GTX 1660 SUPER 6GB · i5-12400F · 16GB RAM · Windows 11**
+
+---
+
+## Czym jest Czarne Niebo AI?
+
+Lokalny pipeline AI do pracy z archiwum dziennikarskim:
+- przeszukiwanie setek dokumentów PDF/audio/video po polsku (RAG)
+- transkrypcja nagrań archiwalnych (Whisper)
+- graf powiązań osoby–organizacje–miejsca (OSINT)
+- **weryfikacja autentyczności mediów** — 5-sygnałowy detektor deepfake'ów
+
+Działa lokalnie, bez chmury, na sprzęcie klasy gaming PC.
+
+---
 
 ## Szybki start
 
 ```bat
-# Aktywuj środowisko
-C:\Users\rzecz\ai-pipeline\Scripts\activate.bat
-
-# Lub kliknij dwukrotnie:
+# Kliknij dwukrotnie:
 URUCHOM.bat
+
+# Lub aktywuj ręcznie i uruchom Web UI:
+C:\Users\rzecz\ai-pipeline\Scripts\activate.bat
+python -m czarneniebo.web_ui
 ```
+
+Interfejs działa pod: **http://localhost:7860**
+
+---
 
 ## Struktura projektu
 
 ```
 AI-Dziennikarstwo/
-├── URUCHOM.bat              ← punkt wejścia
-├── pipeline.py              ← rdzeń: OCR + NER + ChromaDB + RAG z Bielikiem
-├── whisper_transkrypcja.py  ← audio/video → tekst (Whisper medium PL)
-├── restauracja_mediow.py    ← Demucs (separacja głosu) + Real-ESRGAN (upscaling)
-├── graf_powiazań.py         ← NetworkX + PyVis graf OSINT
-├── dezinformacja.py         ← Logistic Regression + sentence-transformers
-├── web_ui.py                ← Gradio UI http://localhost:7860
-├── file_watcher.py          ← auto-indeksowanie folderu archiwum
-├── archiwum/                ← TU wrzucaj dokumenty
-├── wyniki/                  ← wyniki pipeline, grafy HTML
-├── archiwum_db/             ← ChromaDB (baza wektorowa)
-└── modele/                  ← zapisane modele sklearn
+├── czarneniebo/
+│   ├── config.py              ← ścieżki i stałe (CN_BASE_DIR)
+│   ├── pipeline.py            ← OCR + NER + ChromaDB + RAG
+│   ├── whisper_transkrypcja.py← audio/video → tekst (Whisper medium PL)
+│   ├── graf_powiazań.py       ← graf OSINT (NetworkX + PyVis)
+│   ├── dezinformacja.py       ← klasyfikator dezinformacji [PREMIUM]
+│   ├── restauracja_mediow.py  ← Demucs + Real-ESRGAN [PREMIUM]
+│   ├── forensics_pipeline.py  ← detektor deepfake'ów [PREMIUM]
+│   ├── file_watcher.py        ← auto-indeksowanie archiwum
+│   └── web_ui.py              ← Gradio UI
+├── docs/                      ← dokumentacja (mkdocs)
+├── archiwum/                  ← TU wrzucaj dokumenty
+├── wyniki/                    ← wyniki pipeline, raporty HTML
+├── archiwum_db/               ← ChromaDB (baza wektorowa)
+└── modele/                    ← zapisane modele sklearn
 ```
 
-## Komponenty i ich przeznaczenie
+---
+
+## Komponenty
 
 | Komponent | Zadanie | GPU/CPU |
 |-----------|---------|---------|
-| Ollama + Bielik | Odpowiedzi po polsku (RAG) | GPU 4.1GB |
+| Ollama + Bielik Q4_K_S | Odpowiedzi po polsku (RAG) | GPU 4.1GB |
 | Ollama + Moondream | Opisy i analiza zdjęć | GPU 1.7GB |
-| faster-whisper medium | Transkrypcja PL (archiwalne nagrania) | GPU ~3GB |
-| Real-ESRGAN | Upscaling skanów i zdjęć 4x | GPU (kafelki) |
+| faster-whisper medium | Transkrypcja PL | GPU ~3GB |
+| Real-ESRGAN | Upscaling skanów 4x | GPU (kafelki) |
 | Demucs | Separacja głosu z szumu | CPU/GPU |
-| spaCy pl_core_news_lg | NER: persName, orgName, placeName, date | CPU |
+| dima806/deepfake detector | Detekcja deepfake'ów (NN) | CPU |
+| facenet-pytorch MTCNN | Analiza artefaktów twarzy | CPU |
+| spaCy pl_core_news_lg | NER (NKJP: persName/orgName/placeName) | CPU |
 | ChromaDB | Semantyczna baza wiedzy | CPU |
-| sentence-transformers | Embeddingi multilingwalne | CPU/GPU |
+| sentence-transformers | Embeddingi multilingwalne | CPU |
 | NetworkX + PyVis | Graf powiązań OSINT | CPU |
-| Logistic Regression | Detekcja dezinformacji (0.002s/art.) | CPU |
 | Gradio Web UI | Interfejs dla dziennikarzy | - |
-| watchdog | Auto-indeksowanie folderu | CPU |
+
+> **6GB VRAM:** Jeden duży model naraz. Bielik (4.1GB) + Whisper (~2GB) = za dużo jednocześnie. Uruchamiaj sekwencyjnie.
+
+---
 
 ## Przepływ danych
 
@@ -73,11 +102,29 @@ AI-Dziennikarstwo/
     NetworkX graf powiązań (z NER)
 ```
 
-## Ograniczenia sprzętowe
+---
 
-- **6GB VRAM:** Jeden duży model naraz. Bielik (4.1GB) + Whisper medium (~2GB) = za dużo jednocześnie. Uruchamiaj sekwencyjnie.
-- **Fine-tuning 7B:** Wymaga min. 11GB VRAM (QLoRA). Użyj Google Colab (free, T4 15GB) lub Kaggle (free, P100) do trenowania, potem wróć z GGUF do Ollama.
-- **Fine-tuning małych modeli lokalnie:** TinyLlama (1.1B), phi-2 (2.7B) — możliwe na 6GB z Unsloth.
+## Model licencyjny
+
+| Tier | Zawartość | Cena |
+|------|-----------|------|
+| **CORE** | pipeline RAG, Whisper, OSINT, Web UI | Apache 2.0 — bezpłatnie |
+| **PREMIUM** | forensics (deepfake), dezinformacja, restauracja mediów | ~500 PLN netto/rok |
+| **ENTERPRISE** | admin access, SLA, sesje szkoleniowe | umowa indywidualna |
+
+Kontakt: **czarneniebo@proton.me** · Patronite: **https://patronite.pl/CzarneNiebo**
+
+---
+
+## Pierwsze kroki
+
+1. Wrzuć pliki PDF do `archiwum/`
+2. Uruchom `URUCHOM.bat` → opcja 1 (Web UI)
+3. Zakładka "Indeksuj dokumenty" → kliknij "Indeksuj"
+4. Zakładka "Przeszukaj archiwum" → zadaj pytanie po polsku
+5. Zakładka "Forensics" → wgraj zdjęcie/video do weryfikacji
+
+---
 
 ## NER Labels (spaCy pl_core_news_lg)
 
@@ -89,30 +136,6 @@ Model używa formatu NKJP — **nie** standardowego PER/ORG/LOC:
 - `date` — daty
 - `time` — czas
 
-## Ollama modele (już zainstalowane)
+---
 
-```
-bielik:Q4_K_S    4.1GB  ← główny model do RAG i Q&A po polsku
-qwen-pl:latest   4.7GB  ← alternatywa, lepsza ogólna znajomość PL
-moondream        1.7GB  ← analiza zdjęć i dokumentów wizualnych
-```
-
-Pobieranie LLaVA (opcjonalne, pełne 4.7GB):
-```bash
-ollama pull llava:7b
-```
-
-## Pierwsze kroki
-
-1. Wrzuć kilka plików PDF do `C:\Users\rzecz\AI-Dziennikarstwo\archiwum\`
-2. Uruchom `URUCHOM.bat` → opcja 1 (Web UI)
-3. W Web UI: zakładka "Indeksuj dokumenty" → kliknij "Indeksuj"
-4. Zakładka "Przeszukaj archiwum" → zadaj pytanie po polsku
-
-## Real-ESRGAN (instalacja opcjonalna)
-
-```bash
-# W venv ai-pipeline (może wymagać Visual C++ Build Tools)
-pip install realesrgan basicsr
-```
-Potem: `python restauracja_mediow.py obraz stary_skan.jpg`
+*Projekt: Czarne Niebo / Stop Fake — narzędzia dla dziennikarstwa śledczego*

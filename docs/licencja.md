@@ -12,7 +12,6 @@ Obejmuje:
 - `graf_powiazań.py` — OSINT
 - `file_watcher.py` — auto-indeksowanie
 - `web_ui.py` — interfejs
-- Automatyczny installer
 - Dokumentacja
 
 ### Premium — Licencja komercyjna
@@ -25,7 +24,10 @@ Obejmuje:
 - `restauracja_mediow.py` — restauracja archiwalii
 - Bug fixes z głównej gałęzi (pull access)
 
-**Cena:** 0.1 ETH/rok (Polygon/Base) lub faktura tradycyjna.
+**Cena:** ~500 PLN netto/rok (~615 PLN brutto z VAT)
+
+> Cena jest orientacyjna (placeholder przed beta-testami).
+> Finalna cena zostanie ustalona po rozmowach z pierwszymi użytkownikami.
 
 ### Enterprise — Umowa indywidualna
 
@@ -37,54 +39,27 @@ Obejmuje:
 
 ---
 
-## Weryfikacja licencji (smart contract)
+## Zakup licencji
 
-Licencja Premium jest weryfikowana on-chain przez kontrakt ERC-1155 na Polygon.
+### Faktura VAT (dla redakcji i firm)
 
-```
-Network:  Polygon Mainnet (chain ID: 137) lub Base
-Contract: CzarneNieboLicense (ERC-1155)
-Token ID 1 = PREMIUM license
+Kontakt: **czarneniebo@proton.me**
 
-Sprawdź: isLicensed(twoj_wallet, 1) → bool
-```
+Wystawiamy fakturę VAT. Dostęp do prywatnego repo w ciągu 24h od potwierdzenia płatności.
 
-### Zakup licencji
+### Patronite (dla indywidualnych użytkowników)
 
-1. Wejdź na stronę kontraktu (link po deploy)
-2. Wywołaj `mintPremium()` z wartością 0.1 ETH
-3. Wyślij adres portfela na czarneniebo@proton.me
-4. Otrzymasz zaproszenie do prywatnego repo w ciągu 24h
-
-### Weryfikacja w GitHub Actions
-
-Każdy fork sprawdza licencję automatycznie:
-
-```yaml
-# .github/workflows/check-license.yml (w prywatnym repo)
-- name: Verify Polygon license
-  run: python scripts/verify_license.py ${{ secrets.WALLET_ADDRESS }}
-```
+**https://patronite.pl/CzarneNiebo**
 
 ---
 
-## Zakup tradycyjny (bez blockchain)
+## Kryptowaluta (opcjonalnie — v0.3.0)
 
-Dla redakcji preferujących tradycyjny model:
-
-**Kontakt:** czarneniebo@proton.me
-**Patronite:** https://patronite.pl/CzarneNiebo
+Planowane: licencja on-chain przez smart contract ERC-1155 na Polygon/Base.
+Szczegóły po uruchomieniu systemu i zebraniu pierwszych beta-testerów.
 
 ---
 
-## Dlaczego blockchain?
+## Pytania
 
-> "Zamiast umowy PDF którą można zignorować — masz token NFT.
-> Zamiast faktury którą trzeba przetwarzać ręcznie — masz transakcję on-chain.
-> Junior programista z dostępem do repo i tokenem w portfelu
-> = samodzielny klient który nie potrzebuje niczyjej zgody żeby działać."
-
-Smart contract eliminuje:
-- Ręczne zarządzanie dostępem
-- Nieuregulowane używanie po wygaśnięciu licencji
-- Konieczność interwencji przy odnowieniu
+**czarneniebo@proton.me**
