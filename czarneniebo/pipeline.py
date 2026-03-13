@@ -31,7 +31,7 @@ print("Ładowanie spaCy pl_core_news_lg...")
 nlp = spacy.load("pl_core_news_lg")
 
 print("Ładowanie sentence-transformers (multilingualny)...")
-encoder = SentenceTransformer("paraphrase-multilingual-mpnet-base-v2")
+encoder = SentenceTransformer("paraphrase-multilingual-mpnet-base-v2", device="cpu")
 
 print("Inicjalizacja ChromaDB...")
 chroma = chromadb.PersistentClient(path=str(DB_DIR))
