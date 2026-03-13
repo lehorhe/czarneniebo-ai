@@ -1,0 +1,64 @@
+site_name: Czarne Niebo AI
+site_description: AI tools for investigative journalism and media verification
+site_url: https://czarneniebo.github.io/czarneniebo-ai
+repo_url: https://github.com/czarneniebo/czarneniebo-ai
+repo_name: czarneniebo/czarneniebo-ai
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Jasny motyw
+    - scheme: default
+      primary: deep purple
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Ciemny motyw
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.suggest
+    - content.code.copy
+  language: pl
+
+nav:
+  - Start: index.md
+  - Instalacja: instalacja.md
+  - Licencja i model biznesowy: licencja.md
+  - API Reference:
+    - config: api/config.md
+    - pipeline: api/pipeline.md
+    - forensics_pipeline: api/forensics_pipeline.md
+    - whisper_transkrypcja: api/whisper_transkrypcja.md
+    - dezinformacja: api/dezinformacja.md
+    - graf_powiazań: api/graf_powiazań.md
+
+plugins:
+  - search:
+      lang: pl
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - attr_list
+  - md_in_html
