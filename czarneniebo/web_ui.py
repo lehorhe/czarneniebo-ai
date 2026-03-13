@@ -161,13 +161,12 @@ with gr.Blocks(
                     placeholder="Kto jest powiązany ze spółką X? Jakie dokumenty dotyczą Jana Kowalskiego?",
                     lines=3,
                 )
-                gr.Button("Zapytaj Bielika", variant="primary").click(
-                    interfejs_szukaj, [pytanie_inp], [gr.Textbox(label="Odpowiedź", lines=10), gr.Markdown()]
-                )
+                szukaj_btn = gr.Button("Zapytaj Bielika", variant="primary")
                 gr.Textbox(label="Status", value=interfejs_status, interactive=False)
             with gr.Column():
                 odpowiedz_out = gr.Textbox(label="Odpowiedź Bielika", lines=10)
                 zrodla_out = gr.Markdown(label="Źródła")
+        szukaj_btn.click(interfejs_szukaj, [pytanie_inp], [odpowiedz_out, zrodla_out])
         pytanie_inp.submit(interfejs_szukaj, [pytanie_inp], [odpowiedz_out, zrodla_out])
 
     with gr.Tab("Indeksuj dokumenty"):

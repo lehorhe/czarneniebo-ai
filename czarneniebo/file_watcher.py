@@ -24,7 +24,7 @@ class ArchiwumHandler(FileSystemEventHandler):
     def _zaladuj_pipeline(self):
         if self._pipeline is None:
             print("Ładowanie pipeline...")
-            import pipeline
+            from czarneniebo import pipeline
             self._pipeline = pipeline
         return self._pipeline
 
@@ -53,7 +53,7 @@ class ArchiwumHandler(FileSystemEventHandler):
 
     def _obsłuż_audio(self, sciezka: pathlib.Path):
         """Transkrybuje audio, zapisuje TXT i indeksuje transkrypcję."""
-        from whisper_transkrypcja import transkrybuj
+        from czarneniebo.whisper_transkrypcja import transkrybuj
         print(f"Transkrybuję audio: {sciezka.name}")
         wynik = transkrybuj(sciezka, jezyk="pl")
 
