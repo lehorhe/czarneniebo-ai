@@ -1,0 +1,53 @@
+CZARNE NIEBO AI — COMMERCIAL LICENSE
+=====================================
+Premium Modules: forensics_pipeline, dezinformacja, restauracja_mediow
+
+Copyright 2026 Lech Rustecki / Czarne Niebo
+
+GRANT OF LICENSE
+
+Upon payment of the applicable license fee (verified on-chain via
+LicenseRegistry smart contract on Polygon/Base, or by separate invoice),
+Licensor grants Licensee a non-exclusive, non-transferable license to:
+
+1. ACCESS the private GitHub repository as a fork.
+2. USE the premium modules for internal journalistic and research purposes.
+3. RECEIVE bug fixes and updates from the main branch for the license period.
+4. MODIFY the code for internal use (not redistribution).
+
+RESTRICTIONS
+
+Licensee may NOT:
+- Redistribute, sublicense, or resell the premium modules.
+- Use the software to CREATE disinformation content.
+- Remove or alter copyright notices.
+
+LICENSE TIERS
+
+  PREMIUM (0.1 ETH/year on Polygon/Base):
+  - Fork access to private repo
+  - Bug fixes from main branch
+  - Community support
+
+  ENTERPRISE (by invoice):
+  - Admin access to repository
+  - SLA support (48h response)
+  - Custom integration support
+  - Training sessions
+
+LICENSE VERIFICATION
+
+On-chain: https://polygonscan.com/address/[CONTRACT_ADDRESS]
+Contract: CzarneNieboLicense (ERC-1155)
+Function: isLicensed(wallet_address, 1) → bool
+
+Off-chain: Contact czarneniebo@proton.me
+
+DISCLAIMER
+
+THE SOFTWARE IS PROVIDED FOR JOURNALISTIC AND RESEARCH USE.
+THE LICENSOR IS NOT LIABLE FOR ANY MISUSE.
+DEEPFAKE DETECTION IS PROBABILISTIC — HUMAN VERIFICATION REQUIRED.
+
+Czarne Niebo / Stop Fake
+https://patronite.pl/CzarneNiebo
