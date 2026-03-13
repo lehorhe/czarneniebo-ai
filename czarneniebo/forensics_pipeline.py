@@ -23,7 +23,6 @@ import hashlib
 import json
 import pathlib
 import textwrap
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional
@@ -186,7 +185,7 @@ class ForensicsAnalyzer:
     """
     Wielosygnałowy analizator autentyczności mediów.
 
-    Uruchamia do 5 sygnałów równolegle (ThreadPoolExecutor),
+    Uruchamia 5 sygnałów sekwencyjnie (ochrona VRAM 6GB),
     oblicza ważony wynik zbiorczy i generuje raport HTML.
 
     Example:
@@ -196,9 +195,8 @@ class ForensicsAnalyzer:
         raport_path = analyzer.zapisz_raport(raport)
     """
 
-    def __init__(self, workers: int = 3):
-        self._workers = workers
-        self._nn_model = None   # lazy-loaded
+    def __init__(self):
+        self._nn_model = None   # lazy-loaded, CPU
 
     # ── publiczne API ─────────────────────────────────────────
 
@@ -230,7 +228,7 @@ class ForensicsAnalyzer:
         md5 = self._md5(sciezka)
         print(f"Analizuję: {sciezka.name} (MD5: {md5[:8]}...)")
 
-        # Uruchom sygnały równolegle
+        # Sygnały sekwencyjnie — ochrona VRAM 6GB, każdy model ładuje i zwalnia osobno
         zadania = {
             "ela":      lambda: self._ela(sciezka) if jest_obraz else self._ela_z_klatki(sciezka),
             "metadata": lambda: self._metadata(sciezka),
@@ -240,17 +238,17 @@ class ForensicsAnalyzer:
         }
 
         sygnaly: dict[str, Sygnal] = {}
-        with ThreadPoolExecutor(max_workers=self._workers) as ex:
-            przyszlosci = {ex.submit(fn): nazwa for nazwa, fn in zadania.items()}
-            for f in as_completed(przyszlosci):
-                nazwa = przyszlosci[f]
-                try:
-                    sygnaly[nazwa] = f.result()
-                except Exception as e:
-                    sygnaly[nazwa] = Sygnal(
-                        nazwa=nazwa, wynik=0.5, pewnosc=0.0,
-                        opis="Błąd analizy", blad=str(e)[:200]
-                    )
+        for nazwa, fn in zadania.items():
+            print(f"  [{nazwa.upper()}]...", end=" ", flush=True)
+            try:
+                sygnaly[nazwa] = fn()
+                print("OK")
+            except Exception as e:
+                print(f"BŁĄD: {e}")
+                sygnaly[nazwa] = Sygnal(
+                    nazwa=nazwa, wynik=0.5, pewnosc=0.0,
+                    opis="Błąd analizy", blad=str(e)[:200]
+                )
 
         # Wynik zbiorczy — ważona suma (pomijamy sygnały z błędem)
         suma_wag = 0.0
@@ -531,7 +529,7 @@ class ForensicsAnalyzer:
                 szczegoly={"raw": wyniki}
             )
 
-        except Importers if False else Exception as e:
+        except Exception as e:
             return Sygnal(
                 "nn", 0.5, 0.0,
                 "Model NN niedostępny (zainstaluj transformers)",
@@ -587,6 +585,7 @@ class ForensicsAnalyzer:
             mtcnn = MTCNN(keep_all=True, device="cpu")
             img = Image.open(sciezka).convert("RGB")
             twarze, prawdopodobienstwa = mtcnn.detect(img)
+            del mtcnn  # zwolnij pamięć RAM po użyciu
 
             if twarze is None or len(twarze) == 0:
                 return Sygnal(
