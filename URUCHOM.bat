@@ -14,11 +14,13 @@ set /p WYBOR="Wpisz 1, 2, 3 lub 4: "
 
 if "%WYBOR%"=="1" (
     echo Uruchamiam Web UI...
-    python C:\Users\rzecz\AI-Dziennikarstwo\web_ui.py
+    cd C:\Users\rzecz\AI-Dziennikarstwo
+    python -m czarneniebo.web_ui
 )
 if "%WYBOR%"=="2" (
     echo Uruchamiam File Watcher...
-    python C:\Users\rzecz\AI-Dziennikarstwo\file_watcher.py
+    cd C:\Users\rzecz\AI-Dziennikarstwo
+    python -m czarneniebo.file_watcher
 )
 if "%WYBOR%"=="3" (
     echo Uruchamiam JupyterLab...

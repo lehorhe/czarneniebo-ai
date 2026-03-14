@@ -1,8 +1,8 @@
 site_name: Czarne Niebo AI
 site_description: AI tools for investigative journalism and media verification
-site_url: https://czarneniebo.github.io/czarneniebo-ai
-repo_url: https://github.com/czarneniebo/czarneniebo-ai
-repo_name: czarneniebo/czarneniebo-ai
+site_url: https://lehorhe.github.io/czarneniebo-ai
+repo_url: https://github.com/lehorhe/czarneniebo-ai
+repo_name: lehorhe/czarneniebo-ai
 
 theme:
   name: material

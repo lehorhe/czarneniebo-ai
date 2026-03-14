@@ -35,14 +35,7 @@ modele/*.pth
 secrets.json
 wallet.json
 
-# Legacy root-level scripts (migrated to czarneniebo/ package)
-/pipeline.py
-/web_ui.py
-/file_watcher.py
-/graf_powiazań.py
-/whisper_transkrypcja.py
-/dezinformacja.py
-/restauracja_mediow.py
+# Legacy root-level scripts (moved to legacy/ folder)
 /URUCHOM.bat
 
 # OS

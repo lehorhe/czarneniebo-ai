@@ -6,12 +6,15 @@ Model "medium" mieści się w ~3GB VRAM, zostawiając margines na inne zadania.
 Dla nagrań z lat 80-90 z szumem taśmowym: word_timestamps=True i vad_filter=True.
 """
 
+import logging
 import pathlib
 from faster_whisper import WhisperModel
 
+logger = logging.getLogger(__name__)
+
 # ── ładowanie modelu ──────────────────────────────────────────
-# device="cuda", compute_type="int8" → optymalnie dla GTX 1660 6GB
-# Zmień na device="cpu", compute_type="int8" jeśli VRAM zajęty przez inne modele
+# device="cuda", compute_type="float16" → optymalnie dla GTX 1660 6GB
+# Automatyczny fallback na CPU jeśli CUDA niedostępna
 _model = None
 
 
@@ -20,7 +23,11 @@ def zaladuj_model(rozmiar: str = "medium", urzadzenie: str = "cuda"):
     global _model
     if _model is None:
         print(f"Ładowanie Whisper {rozmiar} na {urzadzenie}...")
-        _model = WhisperModel(rozmiar, device=urzadzenie, compute_type="int8")
+        try:
+            _model = WhisperModel(rozmiar, device=urzadzenie, compute_type="float16")
+        except Exception:
+            logger.warning("CUDA unavailable, falling back to CPU")
+            _model = WhisperModel(rozmiar, device="cpu", compute_type="int8")
         print("Whisper gotowy.")
     return _model
 
