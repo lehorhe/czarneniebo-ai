@@ -1,0 +1,1764 @@
+
+<!doctype html>
+<html lang="pl" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI tools for investigative journalism and media verification">
+      
+      
+      
+        <link rel="canonical" href="https://lehorhe.github.io/czarneniebo-ai/api/dezinformacja/">
+      
+      
+        <link rel="prev" href="../whisper_transkrypcja/">
+      
+      
+        <link rel="next" href="../graf_powiaza%C5%84/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>dezinformacja - Czarne Niebo AI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#czarneniebodezinformacja" class="md-skip">
+          Przejdź do treści
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Nagłówek">
+    <a href="../.." title="Czarne Niebo AI" class="md-header__button md-logo" aria-label="Czarne Niebo AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Czarne Niebo AI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              dezinformacja
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Jasny motyw"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Jasny motyw" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="deep-purple" data-md-color-accent="amber"  aria-label="Ciemny motyw"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Ciemny motyw" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Szukaj" placeholder="Szukaj" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Szukaj">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Wyczyść" aria-label="Wyczyść" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicjowanie wyszukiwania
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/lehorhe/czarneniebo-ai" title="Przejdź do repozytorium" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lehorhe/czarneniebo-ai
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Zakładki" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Start
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../instalacja/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Instalacja
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../licencja/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Licencja i model biznesowy
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../config/" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Nawigacja" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Czarne Niebo AI" class="md-nav__button md-logo" aria-label="Czarne Niebo AI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Czarne Niebo AI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/lehorhe/czarneniebo-ai" title="Przejdź do repozytorium" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    lehorhe/czarneniebo-ai
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../instalacja/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instalacja
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../licencja/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Licencja i model biznesowy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../forensics_pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    forensics_pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../whisper_transkrypcja/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    whisper_transkrypcja
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dezinformacja
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    dezinformacja
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Spis treści">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Spis treści
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#klasa-detektor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Klasa Detektor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dezinformacja
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dezinformacja">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detektor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detektor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor.oceń" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        oceń
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor.oceń_batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        oceń_batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor.trenuj" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        trenuj
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor.zaladuj" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zaladuj
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graf_powiaza%C5%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    graf_powiazań
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Spis treści">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Spis treści
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#klasa-detektor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Klasa Detektor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dezinformacja
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dezinformacja">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Detektor
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detektor">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor.oceń" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        oceń
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor.oceń_batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        oceń_batch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor.trenuj" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        trenuj
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#czarneniebo.dezinformacja.Detektor.zaladuj" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        zaladuj
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="czarneniebodezinformacja">czarneniebo.dezinformacja</h1>
+<p>Detektor dezinformacji — sentence-transformers + Logistic Regression.</p>
+<div class="admonition note">
+<p class="admonition-title">Documentation in progress</p>
+<p>Pełna dokumentacja jest w przygotowaniu.</p>
+</div>
+<h2 id="klasa-detektor">Klasa <code>Detektor</code></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Detektor</span><span class="p">:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_embeddingow</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;paraphrase-multilingual-mpnet-base-v2&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">trenuj</span><span class="p">(</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="n">rzetelne</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="n">podejrzane</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="n">walidacja_krzyzowa</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">oceń</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tekst</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">oceń_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">teksty</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">zaladuj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span>
+</code></pre></div>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="czarneniebo.dezinformacja" class="doc doc-heading">
+            <code>czarneniebo.dezinformacja</code>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+        <p>Detektor dezinformacji — Hybrid ML
+sentence-transformers + Logistic Regression</p>
+<p>Klasyczne ML: 0.002s/artykuł vs 2s dla LLM → 1000x szybciej, interpretowalnie.</p>
+
+
+<details class="użycie" open>
+  <summary>Użycie</summary>
+  <p>from dezinformacja import Detektor
+det = Detektor()
+det.trenuj(artykuly_rzetelne, artykuly_podejrzane)
+wynik = det.oceń("treść artykułu...")</p>
+</details>
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="czarneniebo.dezinformacja.Detektor" class="doc doc-heading">
+            <code>Detektor</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+
+        <p>Detektor dezinformacji oparty na embeddingach + regresji logistycznej.</p>
+
+
+
+
+
+
+
+
+              <details class="mkdocstrings-source">
+                <summary>Source code in <code>czarneniebo/dezinformacja.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-26"> 26</a></span>
+<span class="normal"><a href="#__codelineno-0-27"> 27</a></span>
+<span class="normal"><a href="#__codelineno-0-28"> 28</a></span>
+<span class="normal"><a href="#__codelineno-0-29"> 29</a></span>
+<span class="normal"><a href="#__codelineno-0-30"> 30</a></span>
+<span class="normal"><a href="#__codelineno-0-31"> 31</a></span>
+<span class="normal"><a href="#__codelineno-0-32"> 32</a></span>
+<span class="normal"><a href="#__codelineno-0-33"> 33</a></span>
+<span class="normal"><a href="#__codelineno-0-34"> 34</a></span>
+<span class="normal"><a href="#__codelineno-0-35"> 35</a></span>
+<span class="normal"><a href="#__codelineno-0-36"> 36</a></span>
+<span class="normal"><a href="#__codelineno-0-37"> 37</a></span>
+<span class="normal"><a href="#__codelineno-0-38"> 38</a></span>
+<span class="normal"><a href="#__codelineno-0-39"> 39</a></span>
+<span class="normal"><a href="#__codelineno-0-40"> 40</a></span>
+<span class="normal"><a href="#__codelineno-0-41"> 41</a></span>
+<span class="normal"><a href="#__codelineno-0-42"> 42</a></span>
+<span class="normal"><a href="#__codelineno-0-43"> 43</a></span>
+<span class="normal"><a href="#__codelineno-0-44"> 44</a></span>
+<span class="normal"><a href="#__codelineno-0-45"> 45</a></span>
+<span class="normal"><a href="#__codelineno-0-46"> 46</a></span>
+<span class="normal"><a href="#__codelineno-0-47"> 47</a></span>
+<span class="normal"><a href="#__codelineno-0-48"> 48</a></span>
+<span class="normal"><a href="#__codelineno-0-49"> 49</a></span>
+<span class="normal"><a href="#__codelineno-0-50"> 50</a></span>
+<span class="normal"><a href="#__codelineno-0-51"> 51</a></span>
+<span class="normal"><a href="#__codelineno-0-52"> 52</a></span>
+<span class="normal"><a href="#__codelineno-0-53"> 53</a></span>
+<span class="normal"><a href="#__codelineno-0-54"> 54</a></span>
+<span class="normal"><a href="#__codelineno-0-55"> 55</a></span>
+<span class="normal"><a href="#__codelineno-0-56"> 56</a></span>
+<span class="normal"><a href="#__codelineno-0-57"> 57</a></span>
+<span class="normal"><a href="#__codelineno-0-58"> 58</a></span>
+<span class="normal"><a href="#__codelineno-0-59"> 59</a></span>
+<span class="normal"><a href="#__codelineno-0-60"> 60</a></span>
+<span class="normal"><a href="#__codelineno-0-61"> 61</a></span>
+<span class="normal"><a href="#__codelineno-0-62"> 62</a></span>
+<span class="normal"><a href="#__codelineno-0-63"> 63</a></span>
+<span class="normal"><a href="#__codelineno-0-64"> 64</a></span>
+<span class="normal"><a href="#__codelineno-0-65"> 65</a></span>
+<span class="normal"><a href="#__codelineno-0-66"> 66</a></span>
+<span class="normal"><a href="#__codelineno-0-67"> 67</a></span>
+<span class="normal"><a href="#__codelineno-0-68"> 68</a></span>
+<span class="normal"><a href="#__codelineno-0-69"> 69</a></span>
+<span class="normal"><a href="#__codelineno-0-70"> 70</a></span>
+<span class="normal"><a href="#__codelineno-0-71"> 71</a></span>
+<span class="normal"><a href="#__codelineno-0-72"> 72</a></span>
+<span class="normal"><a href="#__codelineno-0-73"> 73</a></span>
+<span class="normal"><a href="#__codelineno-0-74"> 74</a></span>
+<span class="normal"><a href="#__codelineno-0-75"> 75</a></span>
+<span class="normal"><a href="#__codelineno-0-76"> 76</a></span>
+<span class="normal"><a href="#__codelineno-0-77"> 77</a></span>
+<span class="normal"><a href="#__codelineno-0-78"> 78</a></span>
+<span class="normal"><a href="#__codelineno-0-79"> 79</a></span>
+<span class="normal"><a href="#__codelineno-0-80"> 80</a></span>
+<span class="normal"><a href="#__codelineno-0-81"> 81</a></span>
+<span class="normal"><a href="#__codelineno-0-82"> 82</a></span>
+<span class="normal"><a href="#__codelineno-0-83"> 83</a></span>
+<span class="normal"><a href="#__codelineno-0-84"> 84</a></span>
+<span class="normal"><a href="#__codelineno-0-85"> 85</a></span>
+<span class="normal"><a href="#__codelineno-0-86"> 86</a></span>
+<span class="normal"><a href="#__codelineno-0-87"> 87</a></span>
+<span class="normal"><a href="#__codelineno-0-88"> 88</a></span>
+<span class="normal"><a href="#__codelineno-0-89"> 89</a></span>
+<span class="normal"><a href="#__codelineno-0-90"> 90</a></span>
+<span class="normal"><a href="#__codelineno-0-91"> 91</a></span>
+<span class="normal"><a href="#__codelineno-0-92"> 92</a></span>
+<span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#__codelineno-0-110">110</a></span>
+<span class="normal"><a href="#__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#__codelineno-0-112">112</a></span>
+<span class="normal"><a href="#__codelineno-0-113">113</a></span>
+<span class="normal"><a href="#__codelineno-0-114">114</a></span>
+<span class="normal"><a href="#__codelineno-0-115">115</a></span>
+<span class="normal"><a href="#__codelineno-0-116">116</a></span>
+<span class="normal"><a href="#__codelineno-0-117">117</a></span>
+<span class="normal"><a href="#__codelineno-0-118">118</a></span>
+<span class="normal"><a href="#__codelineno-0-119">119</a></span>
+<span class="normal"><a href="#__codelineno-0-120">120</a></span>
+<span class="normal"><a href="#__codelineno-0-121">121</a></span>
+<span class="normal"><a href="#__codelineno-0-122">122</a></span>
+<span class="normal"><a href="#__codelineno-0-123">123</a></span>
+<span class="normal"><a href="#__codelineno-0-124">124</a></span>
+<span class="normal"><a href="#__codelineno-0-125">125</a></span>
+<span class="normal"><a href="#__codelineno-0-126">126</a></span>
+<span class="normal"><a href="#__codelineno-0-127">127</a></span>
+<span class="normal"><a href="#__codelineno-0-128">128</a></span>
+<span class="normal"><a href="#__codelineno-0-129">129</a></span>
+<span class="normal"><a href="#__codelineno-0-130">130</a></span>
+<span class="normal"><a href="#__codelineno-0-131">131</a></span>
+<span class="normal"><a href="#__codelineno-0-132">132</a></span>
+<span class="normal"><a href="#__codelineno-0-133">133</a></span>
+<span class="normal"><a href="#__codelineno-0-134">134</a></span>
+<span class="normal"><a href="#__codelineno-0-135">135</a></span>
+<span class="normal"><a href="#__codelineno-0-136">136</a></span>
+<span class="normal"><a href="#__codelineno-0-137">137</a></span>
+<span class="normal"><a href="#__codelineno-0-138">138</a></span>
+<span class="normal"><a href="#__codelineno-0-139">139</a></span>
+<span class="normal"><a href="#__codelineno-0-140">140</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="k">class</span><span class="w"> </span><span class="nc">Detektor</span><span class="p">:</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Detektor dezinformacji oparty na embeddingach + regresji logistycznej.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_embeddingow</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;paraphrase-multilingual-mpnet-base-v2&quot;</span><span class="p">):</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ładowanie enkodera: </span><span class="si">{</span><span class="n">model_embeddingow</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">enkoder</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="n">model_embeddingow</span><span class="p">)</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a>            <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a>            <span class="n">class_weight</span><span class="o">=</span><span class="s2">&quot;balanced&quot;</span><span class="p">,</span>  <span class="c1"># radzi sobie z niezbalansowanymi danymi</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a>            <span class="n">C</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a>        <span class="p">)</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wytrenowany</span> <span class="o">=</span> <span class="kc">False</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a>
+<a id="__codelineno-0-39" name="__codelineno-0-39"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_zakoduj</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">teksty</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">enkoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">teksty</span><span class="p">,</span> <span class="n">show_progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">trenuj</span><span class="p">(</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>        <span class="n">rzetelne</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>        <span class="n">podejrzane</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>        <span class="n">walidacja_krzyzowa</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">        Trenuje klasyfikator.</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">            rzetelne: Lista artykułów uznanych za rzetelne (label=0)</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">            podejrzane: Lista artykułów podejrzanych o dezinformację (label=1)</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">            walidacja_krzyzowa: Czy przeprowadzić 5-fold cross-validation</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">            dict ze statystykami trenowania</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trenowanie na </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rzetelne</span><span class="p">)</span><span class="si">}</span><span class="s2"> rzetelnych + </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">podejrzane</span><span class="p">)</span><span class="si">}</span><span class="s2"> podejrzanych&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>        <span class="n">teksty</span> <span class="o">=</span> <span class="n">rzetelne</span> <span class="o">+</span> <span class="n">podejrzane</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>        <span class="n">etykiety</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">rzetelne</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">podejrzane</span><span class="p">)</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kodowanie embeddingów...&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zakoduj</span><span class="p">(</span><span class="n">teksty</span><span class="p">)</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">etykiety</span><span class="p">)</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>        <span class="k">if</span> <span class="n">walidacja_krzyzowa</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">teksty</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>            <span class="n">wyniki_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">teksty</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;f1&quot;</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a>            <span class="p">)</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cross-validation F1: </span><span class="si">{</span><span class="n">wyniki_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">wyniki_cv</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wytrenowany</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>        <span class="c1"># Ocena na danych treningowych (benchmark)</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>        <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Rzetelny&quot;</span><span class="p">,</span> <span class="s2">&quot;Podejrzany&quot;</span><span class="p">]))</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>        <span class="c1"># Zapisz model</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>        <span class="n">sciezka</span> <span class="o">=</span> <span class="n">MODEL_DIR</span> <span class="o">/</span> <span class="s2">&quot;detektor_dezinformacji.pkl&quot;</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sciezka</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>            <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model zapisany: </span><span class="si">{</span><span class="n">sciezka</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>        <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>            <span class="s2">&quot;przykladow&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">teksty</span><span class="p">),</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>            <span class="s2">&quot;rzetelnych&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">rzetelne</span><span class="p">),</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>            <span class="s2">&quot;podejrzanych&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">podejrzane</span><span class="p">),</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>        <span class="p">}</span>
+<a id="__codelineno-0-92" name="__codelineno-0-92"></a>
+<a id="__codelineno-0-93" name="__codelineno-0-93"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">oceń</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tekst</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="sd">        Ocenia pojedynczy artykuł.</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">        Returns:</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">            dict: {etykieta, pewnosc, rzetelny_prob, podejrzany_prob}</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">wytrenowany</span><span class="p">:</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Model nie jest wytrenowany. Uruchom najpierw trenuj().&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zakoduj</span><span class="p">([</span><span class="n">tekst</span><span class="p">])</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a>        <span class="n">proba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">emb</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>        <span class="n">etykieta</span> <span class="o">=</span> <span class="s2">&quot;PODEJRZANY&quot;</span> <span class="k">if</span> <span class="n">proba</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s2">&quot;RZETELNY&quot;</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a>        <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>            <span class="s2">&quot;etykieta&quot;</span><span class="p">:</span> <span class="n">etykieta</span><span class="p">,</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a>            <span class="s2">&quot;pewnosc&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">proba</span><span class="p">)),</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a>            <span class="s2">&quot;prob_rzetelny&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">proba</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a>            <span class="s2">&quot;prob_podejrzany&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">proba</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a>        <span class="p">}</span>
+<a id="__codelineno-0-113" name="__codelineno-0-113"></a>
+<a id="__codelineno-0-114" name="__codelineno-0-114"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">oceń_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">teksty</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Ocenia listę artykułów (szybkie batchowe przetwarzanie).&quot;&quot;&quot;</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">wytrenowany</span><span class="p">:</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Model nie jest wytrenowany.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a>        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zakoduj</span><span class="p">(</span><span class="n">teksty</span><span class="p">)</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a>        <span class="n">proba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">emb</span><span class="p">)</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>        <span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a>            <span class="p">{</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a>                <span class="s2">&quot;tekst_fragment&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a>                <span class="s2">&quot;etykieta&quot;</span><span class="p">:</span> <span class="s2">&quot;PODEJRZANY&quot;</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s2">&quot;RZETELNY&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>                <span class="s2">&quot;pewnosc&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a>                <span class="s2">&quot;prob_podejrzany&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a>            <span class="p">}</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a>            <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">teksty</span><span class="p">,</span> <span class="n">proba</span><span class="p">)</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a>        <span class="p">]</span>
+<a id="__codelineno-0-130" name="__codelineno-0-130"></a>
+<a id="__codelineno-0-131" name="__codelineno-0-131"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">zaladuj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Wczytuje zapisany model.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-133" name="__codelineno-0-133"></a>        <span class="n">sciezka</span> <span class="o">=</span> <span class="n">MODEL_DIR</span> <span class="o">/</span> <span class="s2">&quot;detektor_dezinformacji.pkl&quot;</span>
+<a id="__codelineno-0-134" name="__codelineno-0-134"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">sciezka</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135"></a>            <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-0-136" name="__codelineno-0-136"></a>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sciezka</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-0-138" name="__codelineno-0-138"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">wytrenowany</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-0-139" name="__codelineno-0-139"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model wczytany: </span><span class="si">{</span><span class="n">sciezka</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-140" name="__codelineno-0-140"></a>        <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="czarneniebo.dezinformacja.Detektor.oceń" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">oceń</span><span class="p">(</span><span class="n">tekst</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Ocenia pojedynczy artykuł.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+<th>Name</th>          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+<td><code>dict</code></td>            <td>
+                  <code><span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>{etykieta, pewnosc, rzetelny_prob, podejrzany_prob}</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>czarneniebo/dezinformacja.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-93"> 93</a></span>
+<span class="normal"><a href="#__codelineno-0-94"> 94</a></span>
+<span class="normal"><a href="#__codelineno-0-95"> 95</a></span>
+<span class="normal"><a href="#__codelineno-0-96"> 96</a></span>
+<span class="normal"><a href="#__codelineno-0-97"> 97</a></span>
+<span class="normal"><a href="#__codelineno-0-98"> 98</a></span>
+<span class="normal"><a href="#__codelineno-0-99"> 99</a></span>
+<span class="normal"><a href="#__codelineno-0-100">100</a></span>
+<span class="normal"><a href="#__codelineno-0-101">101</a></span>
+<span class="normal"><a href="#__codelineno-0-102">102</a></span>
+<span class="normal"><a href="#__codelineno-0-103">103</a></span>
+<span class="normal"><a href="#__codelineno-0-104">104</a></span>
+<span class="normal"><a href="#__codelineno-0-105">105</a></span>
+<span class="normal"><a href="#__codelineno-0-106">106</a></span>
+<span class="normal"><a href="#__codelineno-0-107">107</a></span>
+<span class="normal"><a href="#__codelineno-0-108">108</a></span>
+<span class="normal"><a href="#__codelineno-0-109">109</a></span>
+<span class="normal"><a href="#__codelineno-0-110">110</a></span>
+<span class="normal"><a href="#__codelineno-0-111">111</a></span>
+<span class="normal"><a href="#__codelineno-0-112">112</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="k">def</span><span class="w"> </span><span class="nf">oceń</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tekst</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="sd">    Ocenia pojedynczy artykuł.</span>
+<a id="__codelineno-0-96" name="__codelineno-0-96"></a>
+<a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">        dict: {etykieta, pewnosc, rzetelny_prob, podejrzany_prob}</span>
+<a id="__codelineno-0-99" name="__codelineno-0-99"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-100" name="__codelineno-0-100"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">wytrenowany</span><span class="p">:</span>
+<a id="__codelineno-0-101" name="__codelineno-0-101"></a>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Model nie jest wytrenowany. Uruchom najpierw trenuj().&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-102" name="__codelineno-0-102"></a>
+<a id="__codelineno-0-103" name="__codelineno-0-103"></a>    <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zakoduj</span><span class="p">([</span><span class="n">tekst</span><span class="p">])</span>
+<a id="__codelineno-0-104" name="__codelineno-0-104"></a>    <span class="n">proba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">emb</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<a id="__codelineno-0-105" name="__codelineno-0-105"></a>    <span class="n">etykieta</span> <span class="o">=</span> <span class="s2">&quot;PODEJRZANY&quot;</span> <span class="k">if</span> <span class="n">proba</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s2">&quot;RZETELNY&quot;</span>
+<a id="__codelineno-0-106" name="__codelineno-0-106"></a>
+<a id="__codelineno-0-107" name="__codelineno-0-107"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-0-108" name="__codelineno-0-108"></a>        <span class="s2">&quot;etykieta&quot;</span><span class="p">:</span> <span class="n">etykieta</span><span class="p">,</span>
+<a id="__codelineno-0-109" name="__codelineno-0-109"></a>        <span class="s2">&quot;pewnosc&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">proba</span><span class="p">)),</span>
+<a id="__codelineno-0-110" name="__codelineno-0-110"></a>        <span class="s2">&quot;prob_rzetelny&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">proba</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+<a id="__codelineno-0-111" name="__codelineno-0-111"></a>        <span class="s2">&quot;prob_podejrzany&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">proba</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<a id="__codelineno-0-112" name="__codelineno-0-112"></a>    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="czarneniebo.dezinformacja.Detektor.oceń_batch" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">oceń_batch</span><span class="p">(</span><span class="n">teksty</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Ocenia listę artykułów (szybkie batchowe przetwarzanie).</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>czarneniebo/dezinformacja.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-114">114</a></span>
+<span class="normal"><a href="#__codelineno-0-115">115</a></span>
+<span class="normal"><a href="#__codelineno-0-116">116</a></span>
+<span class="normal"><a href="#__codelineno-0-117">117</a></span>
+<span class="normal"><a href="#__codelineno-0-118">118</a></span>
+<span class="normal"><a href="#__codelineno-0-119">119</a></span>
+<span class="normal"><a href="#__codelineno-0-120">120</a></span>
+<span class="normal"><a href="#__codelineno-0-121">121</a></span>
+<span class="normal"><a href="#__codelineno-0-122">122</a></span>
+<span class="normal"><a href="#__codelineno-0-123">123</a></span>
+<span class="normal"><a href="#__codelineno-0-124">124</a></span>
+<span class="normal"><a href="#__codelineno-0-125">125</a></span>
+<span class="normal"><a href="#__codelineno-0-126">126</a></span>
+<span class="normal"><a href="#__codelineno-0-127">127</a></span>
+<span class="normal"><a href="#__codelineno-0-128">128</a></span>
+<span class="normal"><a href="#__codelineno-0-129">129</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-114" name="__codelineno-0-114"></a><span class="k">def</span><span class="w"> </span><span class="nf">oceń_batch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">teksty</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<a id="__codelineno-0-115" name="__codelineno-0-115"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Ocenia listę artykułów (szybkie batchowe przetwarzanie).&quot;&quot;&quot;</span>
+<a id="__codelineno-0-116" name="__codelineno-0-116"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">wytrenowany</span><span class="p">:</span>
+<a id="__codelineno-0-117" name="__codelineno-0-117"></a>        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Model nie jest wytrenowany.&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-118" name="__codelineno-0-118"></a>
+<a id="__codelineno-0-119" name="__codelineno-0-119"></a>    <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zakoduj</span><span class="p">(</span><span class="n">teksty</span><span class="p">)</span>
+<a id="__codelineno-0-120" name="__codelineno-0-120"></a>    <span class="n">proba</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">emb</span><span class="p">)</span>
+<a id="__codelineno-0-121" name="__codelineno-0-121"></a>    <span class="k">return</span> <span class="p">[</span>
+<a id="__codelineno-0-122" name="__codelineno-0-122"></a>        <span class="p">{</span>
+<a id="__codelineno-0-123" name="__codelineno-0-123"></a>            <span class="s2">&quot;tekst_fragment&quot;</span><span class="p">:</span> <span class="n">t</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-124" name="__codelineno-0-124"></a>            <span class="s2">&quot;etykieta&quot;</span><span class="p">:</span> <span class="s2">&quot;PODEJRZANY&quot;</span> <span class="k">if</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.5</span> <span class="k">else</span> <span class="s2">&quot;RZETELNY&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-125" name="__codelineno-0-125"></a>            <span class="s2">&quot;pewnosc&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">p</span><span class="p">)),</span>
+<a id="__codelineno-0-126" name="__codelineno-0-126"></a>            <span class="s2">&quot;prob_podejrzany&quot;</span><span class="p">:</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+<a id="__codelineno-0-127" name="__codelineno-0-127"></a>        <span class="p">}</span>
+<a id="__codelineno-0-128" name="__codelineno-0-128"></a>        <span class="k">for</span> <span class="n">t</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">teksty</span><span class="p">,</span> <span class="n">proba</span><span class="p">)</span>
+<a id="__codelineno-0-129" name="__codelineno-0-129"></a>    <span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="czarneniebo.dezinformacja.Detektor.trenuj" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">trenuj</span><span class="p">(</span><span class="n">rzetelne</span><span class="p">,</span> <span class="n">podejrzane</span><span class="p">,</span> <span class="n">walidacja_krzyzowa</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Trenuje klasyfikator.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>rzetelne</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Lista artykułów uznanych za rzetelne (label=0)</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>podejrzane</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Lista artykułów podejrzanych o dezinformację (label=1)</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>walidacja_krzyzowa</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Czy przeprowadzić 5-fold cross-validation</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>dict ze statystykami trenowania</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>czarneniebo/dezinformacja.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-42">42</a></span>
+<span class="normal"><a href="#__codelineno-0-43">43</a></span>
+<span class="normal"><a href="#__codelineno-0-44">44</a></span>
+<span class="normal"><a href="#__codelineno-0-45">45</a></span>
+<span class="normal"><a href="#__codelineno-0-46">46</a></span>
+<span class="normal"><a href="#__codelineno-0-47">47</a></span>
+<span class="normal"><a href="#__codelineno-0-48">48</a></span>
+<span class="normal"><a href="#__codelineno-0-49">49</a></span>
+<span class="normal"><a href="#__codelineno-0-50">50</a></span>
+<span class="normal"><a href="#__codelineno-0-51">51</a></span>
+<span class="normal"><a href="#__codelineno-0-52">52</a></span>
+<span class="normal"><a href="#__codelineno-0-53">53</a></span>
+<span class="normal"><a href="#__codelineno-0-54">54</a></span>
+<span class="normal"><a href="#__codelineno-0-55">55</a></span>
+<span class="normal"><a href="#__codelineno-0-56">56</a></span>
+<span class="normal"><a href="#__codelineno-0-57">57</a></span>
+<span class="normal"><a href="#__codelineno-0-58">58</a></span>
+<span class="normal"><a href="#__codelineno-0-59">59</a></span>
+<span class="normal"><a href="#__codelineno-0-60">60</a></span>
+<span class="normal"><a href="#__codelineno-0-61">61</a></span>
+<span class="normal"><a href="#__codelineno-0-62">62</a></span>
+<span class="normal"><a href="#__codelineno-0-63">63</a></span>
+<span class="normal"><a href="#__codelineno-0-64">64</a></span>
+<span class="normal"><a href="#__codelineno-0-65">65</a></span>
+<span class="normal"><a href="#__codelineno-0-66">66</a></span>
+<span class="normal"><a href="#__codelineno-0-67">67</a></span>
+<span class="normal"><a href="#__codelineno-0-68">68</a></span>
+<span class="normal"><a href="#__codelineno-0-69">69</a></span>
+<span class="normal"><a href="#__codelineno-0-70">70</a></span>
+<span class="normal"><a href="#__codelineno-0-71">71</a></span>
+<span class="normal"><a href="#__codelineno-0-72">72</a></span>
+<span class="normal"><a href="#__codelineno-0-73">73</a></span>
+<span class="normal"><a href="#__codelineno-0-74">74</a></span>
+<span class="normal"><a href="#__codelineno-0-75">75</a></span>
+<span class="normal"><a href="#__codelineno-0-76">76</a></span>
+<span class="normal"><a href="#__codelineno-0-77">77</a></span>
+<span class="normal"><a href="#__codelineno-0-78">78</a></span>
+<span class="normal"><a href="#__codelineno-0-79">79</a></span>
+<span class="normal"><a href="#__codelineno-0-80">80</a></span>
+<span class="normal"><a href="#__codelineno-0-81">81</a></span>
+<span class="normal"><a href="#__codelineno-0-82">82</a></span>
+<span class="normal"><a href="#__codelineno-0-83">83</a></span>
+<span class="normal"><a href="#__codelineno-0-84">84</a></span>
+<span class="normal"><a href="#__codelineno-0-85">85</a></span>
+<span class="normal"><a href="#__codelineno-0-86">86</a></span>
+<span class="normal"><a href="#__codelineno-0-87">87</a></span>
+<span class="normal"><a href="#__codelineno-0-88">88</a></span>
+<span class="normal"><a href="#__codelineno-0-89">89</a></span>
+<span class="normal"><a href="#__codelineno-0-90">90</a></span>
+<span class="normal"><a href="#__codelineno-0-91">91</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="k">def</span><span class="w"> </span><span class="nf">trenuj</span><span class="p">(</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43"></a>    <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44"></a>    <span class="n">rzetelne</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45"></a>    <span class="n">podejrzane</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46"></a>    <span class="n">walidacja_krzyzowa</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">    Trenuje klasyfikator.</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50"></a>
+<a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">    Args:</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">        rzetelne: Lista artykułów uznanych za rzetelne (label=0)</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">        podejrzane: Lista artykułów podejrzanych o dezinformację (label=1)</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        walidacja_krzyzowa: Czy przeprowadzić 5-fold cross-validation</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55"></a>
+<a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    Returns:</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        dict ze statystykami trenowania</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trenowanie na </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rzetelne</span><span class="p">)</span><span class="si">}</span><span class="s2"> rzetelnych + </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">podejrzane</span><span class="p">)</span><span class="si">}</span><span class="s2"> podejrzanych&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61"></a>    <span class="n">teksty</span> <span class="o">=</span> <span class="n">rzetelne</span> <span class="o">+</span> <span class="n">podejrzane</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62"></a>    <span class="n">etykiety</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">rzetelne</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">podejrzane</span><span class="p">)</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63"></a>
+<a id="__codelineno-0-64" name="__codelineno-0-64"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Kodowanie embeddingów...&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65"></a>    <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zakoduj</span><span class="p">(</span><span class="n">teksty</span><span class="p">)</span>
+<a id="__codelineno-0-66" name="__codelineno-0-66"></a>    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">etykiety</span><span class="p">)</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67"></a>
+<a id="__codelineno-0-68" name="__codelineno-0-68"></a>    <span class="k">if</span> <span class="n">walidacja_krzyzowa</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">teksty</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69"></a>        <span class="n">wyniki_cv</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">teksty</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">),</span> <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;f1&quot;</span>
+<a id="__codelineno-0-71" name="__codelineno-0-71"></a>        <span class="p">)</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cross-validation F1: </span><span class="si">{</span><span class="n">wyniki_cv</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">wyniki_cv</span><span class="o">.</span><span class="n">std</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-73" name="__codelineno-0-73"></a>
+<a id="__codelineno-0-74" name="__codelineno-0-74"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<a id="__codelineno-0-75" name="__codelineno-0-75"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">wytrenowany</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-0-76" name="__codelineno-0-76"></a>
+<a id="__codelineno-0-77" name="__codelineno-0-77"></a>    <span class="c1"># Ocena na danych treningowych (benchmark)</span>
+<a id="__codelineno-0-78" name="__codelineno-0-78"></a>    <span class="n">pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<a id="__codelineno-0-79" name="__codelineno-0-79"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Rzetelny&quot;</span><span class="p">,</span> <span class="s2">&quot;Podejrzany&quot;</span><span class="p">]))</span>
+<a id="__codelineno-0-80" name="__codelineno-0-80"></a>
+<a id="__codelineno-0-81" name="__codelineno-0-81"></a>    <span class="c1"># Zapisz model</span>
+<a id="__codelineno-0-82" name="__codelineno-0-82"></a>    <span class="n">sciezka</span> <span class="o">=</span> <span class="n">MODEL_DIR</span> <span class="o">/</span> <span class="s2">&quot;detektor_dezinformacji.pkl&quot;</span>
+<a id="__codelineno-0-83" name="__codelineno-0-83"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sciezka</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-84" name="__codelineno-0-84"></a>        <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-0-85" name="__codelineno-0-85"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model zapisany: </span><span class="si">{</span><span class="n">sciezka</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-86" name="__codelineno-0-86"></a>
+<a id="__codelineno-0-87" name="__codelineno-0-87"></a>    <span class="k">return</span> <span class="p">{</span>
+<a id="__codelineno-0-88" name="__codelineno-0-88"></a>        <span class="s2">&quot;przykladow&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">teksty</span><span class="p">),</span>
+<a id="__codelineno-0-89" name="__codelineno-0-89"></a>        <span class="s2">&quot;rzetelnych&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">rzetelne</span><span class="p">),</span>
+<a id="__codelineno-0-90" name="__codelineno-0-90"></a>        <span class="s2">&quot;podejrzanych&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">podejrzane</span><span class="p">),</span>
+<a id="__codelineno-0-91" name="__codelineno-0-91"></a>    <span class="p">}</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="czarneniebo.dezinformacja.Detektor.zaladuj" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">zaladuj</span><span class="p">()</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Wczytuje zapisany model.</p>
+
+
+            <details class="mkdocstrings-source">
+              <summary>Source code in <code>czarneniebo/dezinformacja.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-131">131</a></span>
+<span class="normal"><a href="#__codelineno-0-132">132</a></span>
+<span class="normal"><a href="#__codelineno-0-133">133</a></span>
+<span class="normal"><a href="#__codelineno-0-134">134</a></span>
+<span class="normal"><a href="#__codelineno-0-135">135</a></span>
+<span class="normal"><a href="#__codelineno-0-136">136</a></span>
+<span class="normal"><a href="#__codelineno-0-137">137</a></span>
+<span class="normal"><a href="#__codelineno-0-138">138</a></span>
+<span class="normal"><a href="#__codelineno-0-139">139</a></span>
+<span class="normal"><a href="#__codelineno-0-140">140</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="k">def</span><span class="w"> </span><span class="nf">zaladuj</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Wczytuje zapisany model.&quot;&quot;&quot;</span>
+<a id="__codelineno-0-133" name="__codelineno-0-133"></a>    <span class="n">sciezka</span> <span class="o">=</span> <span class="n">MODEL_DIR</span> <span class="o">/</span> <span class="s2">&quot;detektor_dezinformacji.pkl&quot;</span>
+<a id="__codelineno-0-134" name="__codelineno-0-134"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">sciezka</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+<a id="__codelineno-0-135" name="__codelineno-0-135"></a>        <span class="k">return</span> <span class="kc">False</span>
+<a id="__codelineno-0-136" name="__codelineno-0-136"></a>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sciezka</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+<a id="__codelineno-0-137" name="__codelineno-0-137"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">klasyfikator</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<a id="__codelineno-0-138" name="__codelineno-0-138"></a>    <span class="bp">self</span><span class="o">.</span><span class="n">wytrenowany</span> <span class="o">=</span> <span class="kc">True</span>
+<a id="__codelineno-0-139" name="__codelineno-0-139"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Model wczytany: </span><span class="si">{</span><span class="n">sciezka</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<a id="__codelineno-0-140" name="__codelineno-0-140"></a>    <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Ostatnia aktualizacja">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="14 marca 2026 16:15:48 UTC"><span class="timeago" datetime="2026-03-14T16:15:48+00:00" locale="pl"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="14 marca 2026 16:15:48 UTC">2026-03-14</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Utworzony">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="14 marca 2026 16:15:48 UTC"><span class="timeago" datetime="2026-03-14T16:15:48+00:00" locale="pl"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="14 marca 2026 16:15:48 UTC">2026-03-14</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Skopiowano do schowka", "clipboard.copy": "Kopiuj do schowka", "search.result.more.one": "1 wi\u0119cej na tej stronie", "search.result.more.other": "# wi\u0119cej na tej stronie", "search.result.none": "Brak wynik\u00f3w wyszukiwania", "search.result.one": "Wyniki wyszukiwania: 1", "search.result.other": "Wyniki wyszukiwania: #", "search.result.placeholder": "Zacznij pisa\u0107, aby szuka\u0107", "search.result.term.missing": "Brak", "select.version": "Wybierz wersj\u0119"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+    
+  </body>
+</html>
