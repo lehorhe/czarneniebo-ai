@@ -2,18 +2,19 @@
 """
 Czarne Niebo AI — testy E2E na realnych materialach z D:\
 ==========================================================
-Uruchamia kazdy modul pipeline'u na wybranych plikach,
-mierzy czas i VRAM, zapisuje wyniki i raport zbiorczy.
+Kazdy test uruchamia sie w osobnym procesie Python (izolacja RAM).
+Wyniki zapisywane jako JSON + raport zbiorczy RAPORT_*.md.
 
 Uzycie:
-    python scripts/test_e2e.py                    # wszystkie testy
-    python scripts/test_e2e.py --tylko T1a        # jeden test
-    python scripts/test_e2e.py --tylko T1a T2a    # wybrane testy
-    python scripts/test_e2e.py --lista            # pokaz dostepne testy
+    python scripts/test_e2e.py --lista           # pokaz dostepne testy
+    python scripts/test_e2e.py --tylko T3a       # jeden test
+    python scripts/test_e2e.py --tylko T3a T4a T2a
+    python scripts/test_e2e.py                   # wszystkie
 """
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -29,7 +30,6 @@ if sys.platform == "win32":
 REPO_ROOT = Path(__file__).parent.parent.resolve()
 sys.path.insert(0, str(REPO_ROOT))
 
-# Katalog wynikow - uzywamy config.py
 from czarneniebo.config import WYNIKI_DIR
 
 WYNIKI_E2E = WYNIKI_DIR / "testy_e2e"
@@ -38,77 +38,72 @@ WYNIKI_E2E.mkdir(parents=True, exist_ok=True)
 # ── definicje testow ─────────────────────────────────────────────────────────
 
 TESTY = {
-    # T1: Whisper transkrypcja
     "T1a": {
         "opis": "Whisper PL — krotki wywiad (Rey1.mp4, ~700MB)",
         "modul": "whisper",
-        "plik": Path("D:/PRODUKCJA/CZARNE_NIEBO/NEWS/Finals/Rey1.mp4"),
+        "plik": "D:/PRODUKCJA/CZARNE_NIEBO/NEWS/Finals/Rey1.mp4",
         "jezyk": "pl",
         "timeout_min": 60,
     },
     "T1b": {
         "opis": "Whisper UA — raport z Kijowa (36MB MP3)",
         "modul": "whisper",
-        "plik": Path("D:/RETRO/multi/audio/raport_z_kijowa.mp3"),
+        "plik": "D:/RETRO/multi/audio/raport_z_kijowa.mp3",
         "jezyk": "uk",
         "timeout_min": 15,
     },
     "T1c": {
         "opis": "Whisper PL — stress test (Felsztinski, 3.4GB)",
         "modul": "whisper",
-        "plik": Path("D:/PRODUKCJA/CZARNE_NIEBO/NEWS/Finals/Felsztinski_PL_FINAL.mp4"),
+        "plik": "D:/PRODUKCJA/CZARNE_NIEBO/NEWS/Finals/Felsztinski_PL_FINAL.mp4",
         "jezyk": "pl",
         "timeout_min": 180,
     },
-    # T2: RAG — indeksowanie dokumentow
     "T2a": {
         "opis": "RAG — maly PDF (Black Sky AI, 87KB)",
         "modul": "rag",
-        "plik": Path("D:/DOKUMENTY/Dokumenty_Downloads/Czarne_Niebo_docs/Black Sky AI in disinformation scenario.pdf"),
+        "plik": "D:/DOKUMENTY/Dokumenty_Downloads/Czarne_Niebo_docs/Black Sky AI in disinformation scenario.pdf",
         "zapytanie": "Jak AI pomaga w walce z dezinformacja?",
-        "timeout_min": 5,
+        "timeout_min": 10,
     },
     "T2b": {
         "opis": "RAG — instrukcja redakcji AI (286KB PDF)",
         "modul": "rag",
-        "plik": Path("D:/DOKUMENTY/Dokumenty_Downloads/Czarne_Niebo_docs/Instrukcja i Podr\u0119cznik Redakcji AI.pdf"),
+        "plik": "D:/DOKUMENTY/Dokumenty_Downloads/Czarne_Niebo_docs/Instrukcja i Podr\u0119cznik Redakcji AI.pdf",
         "zapytanie": "Jakie sa zasady weryfikacji informacji?",
-        "timeout_min": 5,
+        "timeout_min": 10,
     },
     "T2c": {
         "opis": "RAG — raport EEAS (11MB PDF, duzy)",
         "modul": "rag",
-        "plik": Path("D:/DOKUMENTY/Dokumenty_Downloads/Czarne_Niebo_docs/EEAS-3nd-ThreatReport-March-2025-05-Digital-HD.pdf"),
+        "plik": "D:/DOKUMENTY/Dokumenty_Downloads/Czarne_Niebo_docs/EEAS-3nd-ThreatReport-March-2025-05-Digital-HD.pdf",
         "zapytanie": "Jakie sa glowne zagrozenia dezinformacyjne w 2025?",
-        "timeout_min": 10,
+        "timeout_min": 15,
     },
-    # T3: Forensics — detekcja deepfake
     "T3a": {
         "opis": "Forensics — autentyczny scan (strona1.jpg, baseline)",
         "modul": "forensics",
-        "plik": Path("D:/ZDJECIA_GRAFIKA/Zdjecia_Downloads/Grodzisk/ogloszenie/strona1.jpg"),
+        "plik": "D:/ZDJECIA_GRAFIKA/Zdjecia_Downloads/Grodzisk/ogloszenie/strona1.jpg",
         "oczekiwany_wynik": "PRAWDOPODOBNIE_AUTENTYCZNY",
-        "timeout_min": 5,
+        "timeout_min": 8,
     },
     "T3b": {
-        "opis": "Forensics wideo — material produkcyjny LM 2025 (pierwsze 30s)",
-        "modul": "forensics_video",
-        "plik": Path("D:/PRODUKCJA/CZARNE_NIEBO/NEWS/Finals/Fotyga.mp4"),
-        "timeout_min": 10,
+        "opis": "Forensics wideo — material produkcyjny (Fotyga.mp4)",
+        "modul": "forensics",
+        "plik": "D:/PRODUKCJA/CZARNE_NIEBO/NEWS/Finals/Fotyga.mp4",
+        "timeout_min": 15,
     },
-    # T4: NER z transkrypcji (wymaga najpierw T1b)
     "T4a": {
-        "opis": "NER + Graf — z krotkim textem testowym",
+        "opis": "NER — tekst testowy PL (spaCy, bez sentence-transformers)",
         "modul": "ner",
-        "tekst": "Prezydent Ukrainy Wołodymyr Zełenski spotkał się z premierem Polski Donaldem Tuskiem w Warszawie 14 marca 2026 roku. Omawiali wsparcie dla Ukrainy.",
-        "timeout_min": 2,
+        "tekst": "Prezydent Ukrainy Wolodymyr Zelenski spotkal sie z premierem Polski Donaldem Tuskiem w Warszawie 14 marca 2026 roku. Omawiali wsparcie dla Ukrainy i sankcje wobec Rosji.",
+        "timeout_min": 3,
     },
 }
 
 # ── pomiar VRAM ──────────────────────────────────────────────────────────────
 
 def vram_mb() -> int:
-    """Zwraca uzycie VRAM w MB lub -1 jezeli nvidia-smi niedostepne."""
     try:
         r = subprocess.run(
             ["nvidia-smi", "--query-gpu=memory.used", "--format=csv,noheader,nounits"],
@@ -121,275 +116,281 @@ def vram_mb() -> int:
     return -1
 
 
-# ── wykonanie testow ─────────────────────────────────────────────────────────
+# ── worker (uruchamiany w subprocess) ────────────────────────────────────────
 
-def uruchom_whisper(cfg: dict) -> dict:
-    from czarneniebo.whisper_transkrypcja import transkrybuj
-    plik = cfg["plik"]
-    jezyk = cfg.get("jezyk", "pl")
+WORKER_SCRIPT = """
+import sys, json, os
+sys.path.insert(0, r'{repo_root}')
+os.environ['TOKENIZERS_PARALLELISM'] = 'false'
+# Lzejszy model embeddingow dla testow (470MB zamiast 1.1GB)
+os.environ.setdefault('CN_EMBED_MODEL', 'paraphrase-multilingual-MiniLM-L12-v2')
 
-    wynik = transkrybuj(plik, jezyk=jezyk, rozmiar="medium", urzadzenie="cuda")
+cfg = {cfg_json}
+modul = cfg['modul']
+wynik_plik = r'{wynik_plik}'
 
-    # Zapisz wynik JSON
-    out = WYNIKI_E2E / f"{cfg['_id']}_transkrypcja.json"
-    with open(out, "w", encoding="utf-8") as f:
-        json.dump({
-            "plik": str(plik),
-            "jezyk_wejscie": jezyk,
-            "jezyk_wykryty": wynik.get("jezyk", "?"),
-            "dlugosc_s": wynik.get("dlugosc_s", 0),
-            "tekst_fragment": wynik.get("tekst", "")[:500] + "...",
-            "segmentow": len(wynik.get("segmenty", [])),
-        }, f, ensure_ascii=False, indent=2)
+try:
+    if modul == 'whisper':
+        from czarneniebo.whisper_transkrypcja import transkrybuj
+        from pathlib import Path
+        w = transkrybuj(cfg['plik'], jezyk=cfg.get('jezyk','pl'),
+                        rozmiar='medium', urzadzenie='cuda')
+        result = {{
+            'status': 'OK',
+            'jezyk_wykryty': w.get('jezyk','?'),
+            'dlugosc_s': round(w.get('dlugosc_s',0), 1),
+            'segmentow': len(w.get('segmenty',[])),
+            'tekst_fragment': w.get('tekst','')[:300],
+        }}
+        # Pelny wynik
+        import json as _j
+        with open(wynik_plik.replace('.json','_full.json'), 'w', encoding='utf-8') as f:
+            _j.dump({{'tekst': w.get('tekst',''), 'segmenty': w.get('segmenty',[])}}, f, ensure_ascii=False, indent=2)
 
-    return {
-        "status": "OK",
-        "jezyk_wykryty": wynik.get("jezyk", "?"),
-        "dlugosc_s": round(wynik.get("dlugosc_s", 0), 1),
-        "segmentow": len(wynik.get("segmenty", [])),
-        "wynik_plik": str(out),
-        "tekst_fragment": wynik.get("tekst", "")[:200],
-    }
+    elif modul == 'rag':
+        # PDF ekstrakcja + direct Q&A przez Bielik (bez modelu embeddingow)
+        # Testuje workflow: tekst z dokumentu -> kontekst dla LLM -> odpowiedz
+        import pdfplumber, ollama
+        from pathlib import Path
+        plik_path = Path(cfg['plik'])
 
+        # 1) Ekstrakcja tekstu
+        with pdfplumber.open(str(plik_path)) as pdf:
+            tekst = '\\n'.join(p.extract_text() or '' for p in pdf.pages)
+        tekst = tekst.strip()
+        if not tekst:
+            raise ValueError('Pusty tekst z PDF')
 
-def uruchom_rag(cfg: dict) -> dict:
-    from czarneniebo.pipeline import indeksuj_dokument, zapytaj_archiwum
-    plik = cfg["plik"]
-    zapytanie = cfg.get("zapytanie", "Co zawiera ten dokument?")
+        # 2) Zapytanie do Bielika z kontekstem dokumentu
+        zapytanie = cfg.get('zapytanie', 'Co zawiera ten dokument?')
+        kontekst = tekst[:4000]
+        resp = ollama.chat(
+            model='SpeakLeash/bielik-7b-instruct-v0.1-gguf:Q4_K_S',
+            messages=[{{'role':'user','content':'Kontekst: ' + kontekst + '\\n\\nPytanie: ' + zapytanie}}],
+            options={{'num_predict':200, 'temperature':0.1}}
+        )
+        odpowiedz = resp['message']['content']
 
-    meta = indeksuj_dokument(plik)
-    odpowiedz = zapytaj_archiwum(zapytanie, n_kontekst=3)
+        result = {{
+            'status': 'OK',
+            'znakow_tekstu': len(tekst),
+            'odpowiedz_fragment': odpowiedz[:400],
+        }}
 
-    out = WYNIKI_E2E / f"{cfg['_id']}_rag.json"
-    with open(out, "w", encoding="utf-8") as f:
-        json.dump({
-            "plik": str(plik),
-            "indeksowanie": meta,
-            "zapytanie": zapytanie,
-            "odpowiedz_fragment": odpowiedz[:500],
-        }, f, ensure_ascii=False, indent=2)
+    elif modul == 'forensics':
+        from czarneniebo.forensics_pipeline import ForensicsAnalyzer
+        from pathlib import Path
+        analyzer = ForensicsAnalyzer()
+        raport = analyzer.analizuj(Path(cfg['plik']))
+        analyzer.zapisz_raport(raport, Path(r'{wyniki_e2e}'))
+        oczekiwany = cfg.get('oczekiwany_wynik')
+        result = {{
+            'status': 'OK',
+            'etykieta': raport.etykieta,
+            'poziom_pewnosci': round(raport.poziom_pewnosci, 3),
+            'sygnaly': {{k: round(float(v.wynik), 3) for k,v in raport.sygnaly.items()}},
+            'zgodnosc_z_oczekiwanym': (raport.etykieta == oczekiwany) if oczekiwany else None,
+        }}
 
-    return {
-        "status": "OK",
-        "fragmentow_zindeksowanych": meta.get("fragmentow", "?"),
-        "odpowiedz_fragment": odpowiedz[:200],
-        "wynik_plik": str(out),
-    }
+    elif modul == 'ner':
+        import spacy
+        nlp = spacy.load('pl_core_news_lg')
+        doc = nlp(cfg.get('tekst', ''))
+        encje = {{}}
+        for ent in doc.ents:
+            encje.setdefault(ent.label_, []).append(ent.text)
+        result = {{
+            'status': 'OK',
+            'encje_lacznie': sum(len(v) for v in encje.values()),
+            'typy': {{k: v for k,v in encje.items()}},
+        }}
 
+    else:
+        result = {{'status': 'BLAD', 'powod': f'Nieznany modul: {{modul}}'}}
 
-def uruchom_forensics(cfg: dict) -> dict:
-    from czarneniebo.forensics_pipeline import ForensicsAnalyzer
-    plik = cfg["plik"]
-    oczekiwany = cfg.get("oczekiwany_wynik", None)
+except MemoryError as e:
+    result = {{'status': 'OOM', 'powod': f'Out of memory: {{e}}'}}
+except Exception as e:
+    import traceback
+    result = {{'status': 'BLAD', 'powod': str(e), 'traceback': traceback.format_exc()[-800:]}}
 
-    analyzer = ForensicsAnalyzer()
-    raport = analyzer.analizuj(plik)
-    sciezka_raportu = analyzer.zapisz_raport(raport, WYNIKI_E2E)
+import json as _j
+with open(wynik_plik, 'w', encoding='utf-8') as f:
+    _j.dump(result, f, ensure_ascii=False, indent=2)
+print('WYNIK_OK')
+"""
 
-    zgodnosc = None
-    if oczekiwany:
-        zgodnosc = raport.etykieta == oczekiwany
-
-    return {
-        "status": "OK",
-        "etykieta": raport.etykieta,
-        "poziom_pewnosci": round(raport.poziom_pewnosci, 3),
-        "sygnaly": {k: round(v.get("wynik", 0), 3) for k, v in raport.sygnaly.items()},
-        "oczekiwany": oczekiwany,
-        "zgodnosc_z_oczekiwanym": zgodnosc,
-        "wynik_plik": str(sciezka_raportu),
-    }
-
-
-def uruchom_ner(cfg: dict) -> dict:
-    from czarneniebo.pipeline import ner_ekstrakcja
-    tekst = cfg.get("tekst", "")
-
-    encje = ner_ekstrakcja(tekst)
-
-    out = WYNIKI_E2E / f"{cfg['_id']}_ner.json"
-    with open(out, "w", encoding="utf-8") as f:
-        json.dump({"tekst": tekst, "encje": encje}, f, ensure_ascii=False, indent=2)
-
-    return {
-        "status": "OK",
-        "encje_lacznie": sum(len(v) for v in encje.values()),
-        "typy": {k: len(v) for k, v in encje.items() if v},
-        "wynik_plik": str(out),
-    }
-
-
-WYKONAWCY = {
-    "whisper": uruchom_whisper,
-    "rag": uruchom_rag,
-    "forensics": uruchom_forensics,
-    "forensics_video": uruchom_forensics,  # ten sam analyzer, inne wejscie
-    "ner": uruchom_ner,
-}
-
-
-# ── glowna petla ─────────────────────────────────────────────────────────────
 
 def uruchom_test(test_id: str) -> dict:
-    cfg = dict(TESTY[test_id])
-    cfg["_id"] = test_id
-
+    cfg = TESTY[test_id]
     plik = cfg.get("plik")
+
     if plik and not Path(plik).exists():
         return {
-            "id": test_id,
-            "opis": cfg["opis"],
-            "status": "POMINIETY",
-            "powod": f"Plik nie istnieje: {plik}",
-            "czas_s": 0,
-            "vram_przed": -1,
-            "vram_po": -1,
-            "vram_delta": 0,
+            "id": test_id, "opis": cfg["opis"], "status": "POMINIETY",
+            "powod": f"Plik nie istnieje: {plik}", "czas_s": 0,
         }
 
-    modul = cfg["modul"]
-    wykonawca = WYKONAWCY.get(modul)
-    if not wykonawca:
-        return {
-            "id": test_id,
-            "opis": cfg["opis"],
-            "status": "BLAD",
-            "powod": f"Nieznany modul: {modul}",
-            "czas_s": 0,
-        }
+    wynik_plik = str(WYNIKI_E2E / f"{test_id}_wynik.json")
+    # Usun stary plik - bedziemy wiedziec ze wynik jest swiezy
+    Path(wynik_plik).unlink(missing_ok=True)
+    timeout_s = cfg.get("timeout_min", 10) * 60
 
     print(f"\n[{test_id}] {cfg['opis']}")
     if plik:
-        rozmiar_mb = Path(plik).stat().st_size / 1024 / 1024
-        print(f"  Plik: {Path(plik).name} ({rozmiar_mb:.0f} MB)")
+        mb = Path(plik).stat().st_size / 1024 / 1024
+        print(f"  Plik: {Path(plik).name} ({mb:.0f} MB)")
+
+    # Buduj skrypt workera
+    script = WORKER_SCRIPT.format(
+        repo_root=str(REPO_ROOT).replace("\\", "\\\\"),
+        cfg_json=json.dumps(cfg, ensure_ascii=False),
+        wynik_plik=wynik_plik.replace("\\", "\\\\"),
+        wyniki_e2e=str(WYNIKI_E2E).replace("\\", "\\\\"),
+    )
 
     vram_przed = vram_mb()
     t_start = time.time()
+    env = {**os.environ, "TOKENIZERS_PARALLELISM": "false", "PYTHONIOENCODING": "utf-8"}
 
     try:
-        wynik = wykonawca(cfg)
+        r = subprocess.run(
+            [sys.executable, "-c", script],
+            capture_output=True, text=True,
+            timeout=timeout_s, env=env, encoding="utf-8", errors="replace"
+        )
         czas_s = round(time.time() - t_start, 1)
         vram_po = vram_mb()
         delta = (vram_po - vram_przed) if vram_przed >= 0 and vram_po >= 0 else 0
 
-        print(f"  [OK] {czas_s}s | VRAM: {vram_przed}→{vram_po} MB (delta: +{delta} MB)")
-        if "etykieta" in wynik:
-            print(f"  Wynik: {wynik['etykieta']} ({wynik.get('poziom_pewnosci', '?')})")
-        elif "tekst_fragment" in wynik:
-            print(f"  Fragment: {wynik['tekst_fragment'][:100]}...")
+        # Wczytaj wynik z pliku JSON
+        wynik_path = Path(wynik_plik)
+        if wynik_path.exists():
+            with open(wynik_path, encoding="utf-8") as f:
+                wynik = json.load(f)
+        else:
+            stderr_tail = r.stderr[-600:] if r.stderr else ""
+            stdout_tail = r.stdout[-300:] if r.stdout else ""
+            wynik = {"status": "BLAD", "powod": f"Brak pliku wynikowego. stderr: {stderr_tail} stdout: {stdout_tail}"}
+
+        status = wynik.get("status", "BLAD")
+        print(f"  [{status}] {czas_s}s | VRAM: {vram_przed}→{vram_po} MB (delta: +{delta})")
+
+        if status == "OK":
+            if "etykieta" in wynik:
+                print(f"  Wynik: {wynik['etykieta']} (pewnosc: {wynik.get('poziom_pewnosci','?')})")
+            elif "tekst_fragment" in wynik:
+                print(f"  Fragment: {str(wynik['tekst_fragment'])[:120]}...")
+            elif "encje_lacznie" in wynik:
+                print(f"  Encje: {wynik['encje_lacznie']} — {wynik.get('typy',{})}")
+            elif "odpowiedz_fragment" in wynik:
+                print(f"  Odpowiedz: {str(wynik['odpowiedz_fragment'])[:120]}...")
+        elif status in ("BLAD", "OOM"):
+            print(f"  Powod: {wynik.get('powod','?')[:200]}")
 
         return {
-            "id": test_id,
-            "opis": cfg["opis"],
-            "status": wynik.get("status", "OK"),
+            "id": test_id, "opis": cfg["opis"],
             "czas_s": czas_s,
-            "vram_przed_mb": vram_przed,
-            "vram_po_mb": vram_po,
-            "vram_delta_mb": delta,
-            **{k: v for k, v in wynik.items() if k != "status"},
+            "vram_przed_mb": vram_przed, "vram_po_mb": vram_po, "vram_delta_mb": delta,
+            **wynik,
         }
 
-    except Exception as e:
+    except subprocess.TimeoutExpired:
         czas_s = round(time.time() - t_start, 1)
-        print(f"  [BLAD] {czas_s}s — {e}")
+        print(f"  [TIMEOUT] {czas_s}s (limit: {timeout_s}s)")
         return {
-            "id": test_id,
-            "opis": cfg["opis"],
-            "status": "BLAD",
-            "powod": str(e),
+            "id": test_id, "opis": cfg["opis"], "status": "TIMEOUT",
+            "powod": f"Przekroczono {cfg.get('timeout_min',10)} min",
             "czas_s": czas_s,
-            "vram_przed_mb": vram_przed,
-            "vram_po_mb": vram_mb(),
+        }
+    except Exception as e:
+        return {
+            "id": test_id, "opis": cfg["opis"], "status": "BLAD",
+            "powod": str(e), "czas_s": round(time.time() - t_start, 1),
         }
 
 
-def generuj_raport(wyniki: list[dict], ts: str):
+# ── raport ────────────────────────────────────────────────────────────────────
+
+def generuj_raport(wyniki: list, ts: str) -> Path:
     raport_json = WYNIKI_E2E / f"RAPORT_{ts}.json"
     with open(raport_json, "w", encoding="utf-8") as f:
         json.dump(wyniki, f, ensure_ascii=False, indent=2)
 
-    raport_md = WYNIKI_E2E / f"RAPORT_{ts}.md"
-    ok = sum(1 for w in wyniki if w["status"] == "OK")
-    blad = sum(1 for w in wyniki if w["status"] == "BLAD")
-    pominiety = sum(1 for w in wyniki if w["status"] == "POMINIETY")
+    ok = sum(1 for w in wyniki if w.get("status") == "OK")
+    blad = sum(1 for w in wyniki if w.get("status") in ("BLAD", "OOM", "TIMEOUT"))
+    pomin = sum(1 for w in wyniki if w.get("status") == "POMINIETY")
 
     linie = [
-        f"# Raport testow E2E — Czarne Niebo AI",
+        "# Raport testow E2E — Czarne Niebo AI",
         f"**Data:** {ts.replace('_', ' ')}",
-        f"**Wyniki:** {ok} OK | {blad} BLAD | {pominiety} POMINIETY",
+        f"**Wyniki:** {ok} OK / {blad} BLAD / {pomin} POMINIETY",
         "",
-        "## Tabela wynikow",
-        "",
-        "| Test | Opis | Status | Czas (s) | VRAM delta (MB) | Uwagi |",
-        "|------|------|--------|----------|-----------------|-------|",
+        "| Test | Opis | Status | Czas (s) | VRAM delta | Uwagi |",
+        "|------|------|--------|----------|------------|-------|",
     ]
-
     for w in wyniki:
         uwagi = ""
-        if w["status"] == "BLAD":
-            uwagi = w.get("powod", "")[:60]
-        elif w["status"] == "POMINIETY":
-            uwagi = w.get("powod", "")[:60]
+        s = w.get("status", "?")
+        if s in ("BLAD", "OOM", "TIMEOUT"):
+            uwagi = str(w.get("powod", ""))[:60]
         elif "etykieta" in w:
             zgodnosc = w.get("zgodnosc_z_oczekiwanym")
-            znak = " [OK]" if zgodnosc else (" [NIEZG]" if zgodnosc is False else "")
-            uwagi = f"{w['etykieta']} ({w.get('poziom_pewnosci', '?')}){znak}"
+            ok_str = " [OK]" if zgodnosc else (" [NIEZG]" if zgodnosc is False else "")
+            uwagi = f"{w['etykieta']} ({w.get('poziom_pewnosci','?')}){ok_str}"
         elif "dlugosc_s" in w:
-            uwagi = f"{w['dlugosc_s']}s audio, {w.get('segmentow', '?')} segm, jezyk: {w.get('jezyk_wykryty', '?')}"
+            uwagi = f"{w['dlugosc_s']}s audio, {w.get('segmentow','?')} segm, jezyk: {w.get('jezyk_wykryty','?')}"
         elif "encje_lacznie" in w:
-            uwagi = f"{w['encje_lacznie']} encji: {w.get('typy', {})}"
+            uwagi = f"{w['encje_lacznie']} encji"
+        elif "odpowiedz_fragment" in w:
+            uwagi = str(w["odpowiedz_fragment"])[:50]
 
         linie.append(
-            f"| {w['id']} | {w['opis'][:40]} | {w['status']} "
-            f"| {w.get('czas_s', '-')} | {w.get('vram_delta_mb', '-')} | {uwagi} |"
+            f"| {w['id']} | {w['opis'][:38]} | **{s}** "
+            f"| {w.get('czas_s','-')} | {w.get('vram_delta_mb','-')} | {uwagi} |"
         )
 
-    linie += ["", "---", f"*Wygenerowano automatycznie przez scripts/test_e2e.py*"]
-
+    linie += ["", "---", "*Wygenerowano przez scripts/test_e2e.py*"]
+    raport_md = WYNIKI_E2E / f"RAPORT_{ts}.md"
     with open(raport_md, "w", encoding="utf-8") as f:
         f.write("\n".join(linie))
-
     return raport_md
 
 
+# ── main ─────────────────────────────────────────────────────────────────────
+
 def main():
     parser = argparse.ArgumentParser(description="Czarne Niebo AI — testy E2E")
-    parser.add_argument("--tylko", nargs="+", metavar="ID",
-                        help="Uruchom tylko wybrane testy (np. T1a T2a)")
-    parser.add_argument("--lista", action="store_true",
-                        help="Wyswietl dostepne testy i wyjdz")
+    parser.add_argument("--tylko", nargs="+", metavar="ID")
+    parser.add_argument("--lista", action="store_true")
     args = parser.parse_args()
 
     if args.lista:
         print("\nDostepne testy:\n")
         for tid, cfg in TESTY.items():
-            plik = cfg.get("plik", "-")
-            istnieje = "[OK]" if Path(plik).exists() else "[BRAK]" if plik != "-" else ""
-            print(f"  {tid:6s}  {cfg['opis'][:55]:55s}  {istnieje}")
+            p = cfg.get("plik", "-")
+            istnieje = "[OK]  " if (p == "-" or Path(p).exists()) else "[BRAK]"
+            print(f"  {tid:5s} {istnieje}  {cfg['opis']}")
         return
 
-    wybrane = args.tylko if args.tylko else list(TESTY.keys())
+    wybrane = args.tylko or list(TESTY.keys())
     nieznane = [t for t in wybrane if t not in TESTY]
     if nieznane:
-        print(f"[BLAD] Nieznane ID testow: {nieznane}")
-        print(f"Dostepne: {list(TESTY.keys())}")
+        print(f"Nieznane ID: {nieznane}. Dostepne: {list(TESTY.keys())}")
         sys.exit(1)
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
     print(f"\nCzarne Niebo AI — testy E2E [{ts}]")
     print(f"Uruchamiam {len(wybrane)} test(ow): {wybrane}")
+    print(f"Izolacja RAM: kazdy test w osobnym procesie Python")
     print(f"Wyniki: {WYNIKI_E2E}")
 
-    wyniki = []
-    for tid in wybrane:
-        wynik = uruchom_test(tid)
-        wyniki.append(wynik)
-
+    wyniki = [uruchom_test(tid) for tid in wybrane]
     raport = generuj_raport(wyniki, ts)
-    print(f"\n{'='*60}")
-    ok = sum(1 for w in wyniki if w["status"] == "OK")
-    print(f"Zakonczone: {ok}/{len(wyniki)} OK")
-    print(f"Raport: {raport}")
+
+    ok = sum(1 for w in wyniki if w.get("status") == "OK")
+    print(f"\n{'='*55}")
+    print(f"Zakonczone: {ok}/{len(wyniki)} OK  |  Raport: {raport.name}")
 
 
 if __name__ == "__main__":

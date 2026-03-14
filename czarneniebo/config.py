@@ -43,6 +43,13 @@ OLLAMA_MODEL_VISION = os.environ.get(
     "moondream"
 )
 
+# ── Sentence-Transformers (lokalne embeddingi) ────────────────
+# Lżejsza alternatywa: paraphrase-multilingual-MiniLM-L12-v2 (~470MB)
+EMBED_MODEL = os.environ.get(
+    "CN_EMBED_MODEL",
+    "paraphrase-multilingual-mpnet-base-v2"  # ~1.1GB, najlepsza jakość
+)
+
 # ── Whisper ───────────────────────────────────────────────────
 WHISPER_MODEL  = os.environ.get("CN_WHISPER_MODEL", "medium")
 WHISPER_DEVICE = os.environ.get("CN_WHISPER_DEVICE", "cuda")

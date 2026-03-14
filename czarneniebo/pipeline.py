@@ -21,7 +21,7 @@ from sentence_transformers import SentenceTransformer
 import ollama
 
 # ── konfiguracja ──────────────────────────────────────────────
-from czarneniebo.config import ARCHIWUM_DIR, DB_DIR, WYNIKI_DIR, MODELE_DIR, OLLAMA_MODEL_CHAT as OLLAMA_MODEL
+from czarneniebo.config import ARCHIWUM_DIR, DB_DIR, WYNIKI_DIR, MODELE_DIR, OLLAMA_MODEL_CHAT as OLLAMA_MODEL, EMBED_MODEL
 # DB_DIR from config
 # WYNIKI_DIR from config
 # OLLAMA_MODEL from config
@@ -30,8 +30,15 @@ from czarneniebo.config import ARCHIWUM_DIR, DB_DIR, WYNIKI_DIR, MODELE_DIR, OLL
 print("Ładowanie spaCy pl_core_news_lg...")
 nlp = spacy.load("pl_core_news_lg")
 
-print("Ładowanie sentence-transformers (multilingualny)...")
-encoder = SentenceTransformer("paraphrase-multilingual-mpnet-base-v2", device="cpu")
+# Lazy loading — model ładuje się dopiero przy pierwszym użyciu
+_encoder = None
+
+def get_encoder():
+    global _encoder
+    if _encoder is None:
+        print(f"Ładowanie sentence-transformers ({EMBED_MODEL})...")
+        _encoder = SentenceTransformer(EMBED_MODEL, device="cpu")
+    return _encoder
 
 print("Inicjalizacja ChromaDB...")
 chroma = chromadb.PersistentClient(path=str(DB_DIR))
@@ -100,7 +107,7 @@ def indeksuj_dokument(sciezka: pathlib.Path) -> dict:
         return {}
 
     encje = ner_ekstrakcja(tekst)
-    embedding = encoder.encode(tekst[:8192]).tolist()
+    embedding = get_encoder().encode(tekst[:8192]).tolist()
 
     meta = {
         "plik": sciezka.name,
@@ -135,7 +142,7 @@ def indeksuj_folder(folder: pathlib.Path = ARCHIWUM_DIR):
 
 def szukaj(pytanie: str, n: int = 5) -> list[dict]:
     """Semantyczne przeszukiwanie archiwum."""
-    emb = encoder.encode(pytanie).tolist()
+    emb = get_encoder().encode(pytanie).tolist()
     wyniki = kolekcja.query(
         query_embeddings=[emb],
         n_results=n,
